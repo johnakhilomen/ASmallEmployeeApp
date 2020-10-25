@@ -15,11 +15,11 @@ namespace EmployeeLibrary
         Employee _employee;
     public:
         vector<Employee> Employees;
-        EmployeeDataAdapter(Employee employee);
+        EmployeeDataAdapter();
         ~EmployeeDataAdapter();
-        bool AddEmployee();
-        bool DeleteEmployee();
-        Employee GetEmployee();
+        bool AddEmployee(Employee &employee);
+        bool DeleteEmployee(string &fullname);
+        Employee GetEmployee(string &fullname);
         
     };
       

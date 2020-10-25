@@ -6,32 +6,53 @@
 
 using namespace EmployeeLibrary;
 
-    EmployeeDataAdapter::EmployeeDataAdapter(Employee employee)
+    EmployeeDataAdapter::EmployeeDataAdapter()
     {
-        _employee = employee;
     }
     
     EmployeeDataAdapter::~EmployeeDataAdapter()
     {
-
     }
 
-    bool EmployeeDataAdapter::AddEmployee()
+    bool EmployeeDataAdapter::AddEmployee(Employee &employee)
     {
         Employees.push_back(_employee);
-        if(Employees.size() == Employees.size() + 1)
+        for (Employee e : Employees )
         {
-            return true;
+            if(e.GetFullname() == _employee.GetFullname())
+            {
+                return true;
+                break;
+            }
         }
         return false;
     }
     
-    bool EmployeeDataAdapter::DeleteEmployee()
+    bool EmployeeDataAdapter::DeleteEmployee(string &fullname)
     {
-        return true;
+        for (int i = 0; i < Employees.size(); i++)
+        {
+            if(Employees[i].GetFullname() == fullname)
+            {
+                //Will erase object in the vector Employees in the position i Vector.erase(Vector.begin() + index);
+                Employees.erase(Employees.begin() + i);
+                return true;
+                break;
+            }
+        }
+        
+        return false;
     }
     
-    Employee EmployeeDataAdapter::GetEmployee()
+    Employee EmployeeDataAdapter::GetEmployee(string &fullname)
     {
-        return _employee;
+        for (Employee e : Employees)
+        {
+            if(e.GetFullname() == fullname)
+            {
+                return e;
+                break;
+            }
+        }
+        return Employee();
     }
